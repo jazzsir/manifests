@@ -3,7 +3,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 commonLabels:
   kustomize.component: metadata
+secretGenerator:
+- name: metadata-db-secrets
+  env: secrets.env
 configMapGenerator:
+- name: metadata-db-parameters
+  env: params.env
 - name: ui-parameters
   env: params.env
 - name: grpc-configmap
@@ -13,6 +18,9 @@ generatorOptions:
   # port at runtime. Because they don't know the suffix, we have to disable it.
   disableNameSuffixHash: true
 resources:
+- metadata-db-pvc.yaml
+- metadata-db-deployment.yaml
+- metadata-db-service.yaml
 - metadata-deployment.yaml
 - metadata-service.yaml
 - metadata-ui-deployment.yaml
@@ -24,6 +32,13 @@ resources:
 - metadata-envoy-service.yaml
 namespace: kubeflow
 vars:
+- name: metadata-db-service
+  objref:
+    kind: Service
+    name: metadata-db
+    apiVersion: v1
+  fieldref:
+    fieldpath: metadata.name
 - name: ui-namespace
   objref:
     kind: Service
@@ -53,6 +68,9 @@ vars:
   fieldref:
     fieldpath: metadata.name
 images:
+- name: mysql
+  newName: mysql
+  newTag: 8.0.3
 - name: gcr.io/kubeflow-images-public/metadata
   newName: gcr.io/kubeflow-images-public/metadata
   newTag: v0.1.11
@@ -68,3 +86,5 @@ images:
 - name: gcr.io/kubeflow-images-public/metadata-frontend
   newName: gcr.io/kubeflow-images-public/metadata-frontend
   newTag: v0.1.8
+patchesStrategicMerge:
+- metadata-deployment-merge.yaml

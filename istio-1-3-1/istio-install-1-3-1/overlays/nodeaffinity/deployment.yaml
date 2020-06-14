@@ -1,0 +1,168 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-citadel
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-galley
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-ingressgateway
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-pilot
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-policy
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-sidecar-injector
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-telemetry
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
+
+---
+
+apiVersion: batch/v1
+kind: Job                                                                               
+metadata:
+  name: istio-security-post-install-release-1.3-latest-daily
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/nodetype
+                operator: In
+                values:
+                - kubeflow
