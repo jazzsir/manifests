@@ -5,7 +5,6 @@ metadata:
   labels:
     serving.knative.dev/release: "v0.11.1"
   name: activator
-  namespace: knative-serving
 spec:
   selector:
     matchLabels:
@@ -85,7 +84,6 @@ metadata:
     autoscaling.knative.dev/autoscaler-provider: hpa
     serving.knative.dev/release: "v0.11.1"
   name: autoscaler-hpa
-  namespace: knative-serving
 spec:
   replicas: 1
   selector:
@@ -135,7 +133,6 @@ metadata:
   labels:
     serving.knative.dev/release: "v0.11.1"
   name: autoscaler
-  namespace: knative-serving
 spec:
   replicas: 1
   selector:
@@ -209,7 +206,6 @@ metadata:
     networking.knative.dev/ingress-provider: istio
     serving.knative.dev/release: "v0.11.1"
   name: networking-istio
-  namespace: knative-serving
 spec:
   replicas: 1
   selector:
@@ -259,7 +255,6 @@ metadata:
   labels:
     serving.knative.dev/release: "v0.11.1"
   name: webhook
-  namespace: knative-serving
 spec:
   replicas: 1
   selector:
@@ -312,7 +307,6 @@ metadata:
   labels:
     serving.knative.dev/release: "v0.11.1"
   name: controller
-  namespace: knative-serving
 spec:
   replicas: 1
   selector:
