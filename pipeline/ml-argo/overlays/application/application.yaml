@@ -1,0 +1,31 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: ml-argo
+spec:
+  addOwnerRef: true
+  selector:
+    matchLabels:
+      application-crd-id: kubeflow-pipelines
+  componentKinds:
+  - group: v1
+    kind: ServiceAccount
+  - group: rbac.authorization.k8s.io/v1
+    kind: Role 
+  - group: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+  - group: v1
+    kind: ConfigMap
+  - group: v1
+    kind: Secret
+  - group: apps/v1
+    kind: Deployment
+  descriptor:
+    type: Kubeflow Pipelines
+    version: 0.5.1
+    description: Argo for pipeline
+    maintainers: []
+    owners: []
+    links:
+    - description: About
+      url: https://github.com/argoproj/argo

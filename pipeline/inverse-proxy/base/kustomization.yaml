@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - cache-deployment.yaml
-  - cache-service.yaml
-  - cache-role.yaml
-  - cache-rolebinding.yaml
-  - cache-sa.yaml
+- proxy-configmap.yaml
+- proxy-deployment.yaml
+- proxy-role.yaml
+- proxy-rolebinding.yaml
+- proxy-sa.yaml
 
 # Used by Kustomize
 configMapGenerator:

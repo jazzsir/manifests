@@ -9,5 +9,6 @@ commonLabels:
   app.kubernetes.io/part-of: kubeflow
   app.kubernetes.io/version: 0.3.0
 kind: Kustomization
+namespace: kfserving-system
 resources:
 - application.yaml

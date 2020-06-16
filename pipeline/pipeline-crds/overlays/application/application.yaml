@@ -1,0 +1,24 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: ml-pipeline-crds
+spec:
+  addOwnerRef: true
+  selector:
+    matchLabels:
+      application-crd-id: kubeflow-pipelines
+  componentKinds:
+  - group: rbac
+    kind: ClusterRole
+  - group: rbac
+    kind: ClusterRoleBinding
+  - group: kubeflow.org
+    kind: Scheduledworkflows
+  - group: kubeflow.org
+    kind: Viewers
+  descriptor:
+    type: Kubeflow Pipelines
+    version: 0.5.1
+    description: CRDs for pipeline
+    maintainers: []
+    owners: []
