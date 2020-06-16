@@ -1,6 +1,11 @@
 apiVersion: kfdef.apps.kubeflow.org/v1
 kind: KfDef
 metadata:
+  annotations:
+    kfctl.kubeflow.io/force-delete: "false"
+  clusterName: kubernetes
+  creationTimestamp: null
+  name: manifests
   namespace: kubeflow
 spec:
   applications:
@@ -57,7 +62,7 @@ spec:
   - kustomizeConfig:
       parameters:
       - name: clusterRbacConfig
-        value: 'OFF'
+        value: "OFF"
       repoRef:
         name: manifests
         path: istio/istio
@@ -193,6 +198,7 @@ spec:
       overlays:
       - istio
       - application
+      - db
       - nodeaffinity
       repoRef:
         name: manifests
@@ -246,6 +252,9 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      parameters:
+      - name: namespace
+        value: kfserving-system
       repoRef:
         name: manifests
         path: kfserving/kfserving-crds
@@ -254,6 +263,9 @@ spec:
       overlays:
       - application
       - nodeaffinity
+      parameters:
+      - name: namespace
+        value: kfserving-system
       repoRef:
         name: manifests
         path: kfserving/kfserving-install
@@ -266,7 +278,7 @@ spec:
       - name: usageId
         value: <randomly-generated-id>
       - name: reportUsage
-        value: 'true'
+        value: "true"
       repoRef:
         name: manifests
         path: common/spartakus
@@ -305,13 +317,21 @@ spec:
       overlays:
       - application
       - istio
-      - ibm-storage-config
+      - nodeaffinity
       repoRef:
         name: manifests
         path: katib/katib-controller
     name: katib-controller
   - kustomizeConfig:
       overlays:
+      - application
+      repoRef:
+        name: manifests
+        path: pipeline/pipeline-crds
+    name: pipeline-crds
+  - kustomizeConfig:
+      overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
@@ -319,6 +339,7 @@ spec:
     name: minio
   - kustomizeConfig:
       overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
@@ -326,20 +347,23 @@ spec:
     name: ml-mysql
   - kustomizeConfig:
       overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
-        path: pipeline/gcp
-    name: proxy
+        path: pipeline/inverse-proxy
+    name: inverse-proxy
   - kustomizeConfig:
       overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
-        path: pipeline/ml-application
-    name: ml-application
+        path: pipeline/ml-metadata
+    name: ml-metadata
   - kustomizeConfig:
       overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
@@ -347,6 +371,7 @@ spec:
     name: ml-argo
   - kustomizeConfig:
       overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
@@ -354,6 +379,7 @@ spec:
     name: ml-cache
   - kustomizeConfig:
       overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
@@ -361,18 +387,14 @@ spec:
     name: ml-cache-deployer
   - kustomizeConfig:
       overlays:
-      - nodeaffinity
-      repoRef:
-        name: manifests
-        path: pipeline/ml-metadata
-    name: ml-metadata
-  - kustomizeConfig:
+      - application
       repoRef:
         name: manifests
         path: pipeline/ml-mysql-pipeline-config
     name: ml-mysql-pipeline-config
   - kustomizeConfig:
       overlays:
+      - application
       - nodeaffinity
       repoRef:
         name: manifests
@@ -382,6 +404,7 @@ spec:
       overlays:
       - application
       - istio
+      - nodeaffinity
       parameters:
       - name: userid-header
         value: kubeflow-userid
@@ -392,11 +415,22 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: seldon/seldon-core-operator
     name: seldon-core-operator
   repos:
   - name: manifests
-    uri: file:/home/hbseo/workspace/v1.0.2.017.tar.gz
+    uri: file:/home/mkc_choi/manifests/manifests.tar.gz
   version: v1.0.2
+status:
+  reposCache:
+  - localPath: '".cache/manifests/manifests"'
+    name: manifests
+  - localPath: '".cache/manifests/manifests"'
+    name: manifests
+  - localPath: '".cache/manifests/manifests"'
+    name: manifests
+  - localPath: '".cache/manifests/manifests"'
+    name: manifests
