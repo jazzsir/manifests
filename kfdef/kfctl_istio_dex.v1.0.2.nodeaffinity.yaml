@@ -17,6 +17,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: application/application
@@ -30,6 +31,8 @@ spec:
         path: istio-1-3-1/istio-crds-1-3-1
     name: istio-crds
   - kustomizeConfig:
+      overlays:
+      - nodeaffinity
       parameters:
       - name: namespace
         value: istio-system
@@ -38,6 +41,8 @@ spec:
         path: istio-1-3-1/istio-install-1-3-1
     name: istio-install
   - kustomizeConfig:
+      overlays:
+      - nodeaffinity
       parameters:
       - name: namespace
         value: istio-system
@@ -46,6 +51,8 @@ spec:
         path: istio-1-3-1/kfserving-gateway
     name: kfserving-gateway
   - kustomizeConfig:
+      overlays:
+      - nodeaffinity
       parameters:
       - name: namespace
         value: istio-system
@@ -81,6 +88,7 @@ spec:
       overlays:
       - self-signed
       - application
+      - nodeaffinity
       parameters:
       - name: namespace
         value: cert-manager
@@ -91,6 +99,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       parameters:
       - name: namespace
         value: istio-system
@@ -113,6 +122,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - istio
+      - nodeaffinity
       parameters:
       - name: namespace
         value: auth
@@ -134,6 +144,7 @@ spec:
       overlays:
       - istio
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: argo
@@ -147,6 +158,7 @@ spec:
       overlays:
       - istio
       - application
+      - nodeaffinity
       parameters:
       - name: userid-header
         value: kubeflow-userid
@@ -158,6 +170,7 @@ spec:
       overlays:
       - cert-manager
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: admission-webhook/webhook
@@ -166,6 +179,7 @@ spec:
       overlays:
       - istio
       - application
+      - nodeaffinity
       parameters:
       - name: userid-header
         value: kubeflow-userid
@@ -176,6 +190,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: spark/spark-operator
@@ -185,6 +200,7 @@ spec:
       - istio
       - application
       - db
+      - nodeaffinity
       repoRef:
         name: manifests
         path: metadata
@@ -193,6 +209,7 @@ spec:
       overlays:
       - istio
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: jupyter/notebook-controller
@@ -207,6 +224,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pytorch-job/pytorch-operator
@@ -224,6 +242,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       parameters:
       - name: namespace
         value: knative-serving
@@ -244,6 +263,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       parameters:
       - name: namespace
         value: kfserving-system
@@ -254,6 +274,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       parameters:
       - name: usageId
         value: <randomly-generated-id>
@@ -266,6 +287,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - istio
+      - nodeaffinity
       repoRef:
         name: manifests
         path: tensorboard
@@ -280,6 +302,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: tf-training/tf-job-operator
@@ -295,6 +318,7 @@ spec:
       overlays:
       - application
       - istio
+      - nodeaffinity
       repoRef:
         name: manifests
         path: katib/katib-controller
@@ -309,6 +333,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/minio
@@ -316,6 +341,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/ml-mysql
@@ -323,6 +349,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/inverse-proxy
@@ -330,6 +357,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/ml-metadata
@@ -337,6 +365,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/ml-argo
@@ -344,6 +373,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/ml-cache
@@ -351,6 +381,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/ml-cache-deployer
@@ -365,6 +396,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: pipeline/ml-pipeline
@@ -373,6 +405,7 @@ spec:
       overlays:
       - application
       - istio
+      - nodeaffinity
       parameters:
       - name: userid-header
         value: kubeflow-userid
@@ -383,6 +416,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: seldon/seldon-core-operator
