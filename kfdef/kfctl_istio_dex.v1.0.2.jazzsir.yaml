@@ -17,6 +17,7 @@ spec:
   - kustomizeConfig:
       overlays:
       - application
+      - nodeaffinity
       repoRef:
         name: manifests
         path: application/application
