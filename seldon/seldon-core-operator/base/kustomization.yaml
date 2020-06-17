@@ -1,5 +1,5 @@
-# List of resource files that kustomize reads, modifies
-# and emits as a YAML string
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 resources:
 - resources.yaml
 - deployment.yaml
